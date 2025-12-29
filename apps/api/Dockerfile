@@ -25,15 +25,23 @@ RUN pnpm --filter @osp/shared build
 RUN pnpm --filter @osp/api build
 
 # Production stage
-FROM base AS runner
+FROM node:20-alpine AS runner
 WORKDIR /app
 
+# Install production dependencies only
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
+COPY apps/api/package.json ./apps/api/
+COPY packages/shared/package.json ./packages/shared/
+
+RUN npm install -g pnpm@8
+RUN pnpm install --prod --frozen-lockfile
+
 # Copy built files
-COPY --from=builder /app/apps/api/dist ./dist
-COPY --from=builder /app/apps/api/package.json ./
-COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/apps/api/dist ./apps/api/dist
+COPY --from=builder /app/packages/shared/dist ./packages/shared/dist
 
 ENV NODE_ENV=production
 EXPOSE 3001
 
+WORKDIR /app/apps/api
 CMD ["node", "dist/main.js"]

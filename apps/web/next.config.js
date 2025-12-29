@@ -6,6 +6,7 @@ const withNextIntl = createNextIntlPlugin("./src/i18n.ts");
 const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ["@osp/shared"],
+  output: "standalone",
   images: {
     remotePatterns: [
       {

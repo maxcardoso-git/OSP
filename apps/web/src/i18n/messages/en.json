@@ -1,0 +1,113 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "filter": "Filter",
+    "actions": "Actions",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "reset": "Reset",
+    "close": "Close",
+    "yes": "Yes",
+    "no": "No",
+    "name": "Name",
+    "description": "Description",
+    "status": "Status",
+    "active": "Active",
+    "inactive": "Inactive",
+    "createdAt": "Created At",
+    "updatedAt": "Updated At",
+    "noResults": "No results found",
+    "selectOption": "Select an option"
+  },
+  "organizations": {
+    "title": "Organizations",
+    "subtitle": "Manage your organizations",
+    "createNew": "Create Organization",
+    "editOrganization": "Edit Organization",
+    "deleteOrganization": "Delete Organization",
+    "deleteConfirm": "Are you sure you want to delete this organization?",
+    "fields": {
+      "name": "Organization Name",
+      "slug": "Slug",
+      "description": "Description",
+      "logo": "Logo"
+    },
+    "messages": {
+      "created": "Organization created successfully",
+      "updated": "Organization updated successfully",
+      "deleted": "Organization deleted successfully"
+    }
+  },
+  "orgUnits": {
+    "title": "Organizational Units",
+    "subtitle": "Manage organizational units",
+    "createNew": "Create Org Unit",
+    "editOrgUnit": "Edit Org Unit",
+    "deleteOrgUnit": "Delete Org Unit",
+    "deleteConfirm": "Are you sure you want to delete this organizational unit?",
+    "fields": {
+      "name": "Unit Name",
+      "code": "Code",
+      "type": "Type",
+      "parent": "Parent Unit",
+      "manager": "Manager"
+    },
+    "messages": {
+      "created": "Organizational unit created successfully",
+      "updated": "Organizational unit updated successfully",
+      "deleted": "Organizational unit deleted successfully"
+    }
+  },
+  "orgUnitTypes": {
+    "title": "Org Unit Types",
+    "subtitle": "Configure organizational unit types",
+    "createNew": "Create Type",
+    "editType": "Edit Type",
+    "deleteType": "Delete Type",
+    "deleteConfirm": "Are you sure you want to delete this type?",
+    "fields": {
+      "name": "Type Name",
+      "code": "Code",
+      "description": "Description",
+      "level": "Level",
+      "color": "Color"
+    },
+    "messages": {
+      "created": "Type created successfully",
+      "updated": "Type updated successfully",
+      "deleted": "Type deleted successfully"
+    }
+  },
+  "tree": {
+    "title": "Organization Tree",
+    "subtitle": "View organizational structure",
+    "expandAll": "Expand All",
+    "collapseAll": "Collapse All",
+    "addChild": "Add Child Unit",
+    "moveNode": "Move Node",
+    "rootNode": "Root",
+    "noChildren": "No child units",
+    "dragHint": "Drag to reorder"
+  },
+  "errors": {
+    "generic": "An error occurred",
+    "notFound": "Resource not found",
+    "unauthorized": "You are not authorized to perform this action",
+    "forbidden": "Access forbidden",
+    "validation": "Please check your input",
+    "network": "Network error. Please try again",
+    "server": "Server error. Please try again later",
+    "required": "This field is required",
+    "invalidEmail": "Invalid email address",
+    "minLength": "Must be at least {min} characters",
+    "maxLength": "Must be at most {max} characters"
+  }
+}

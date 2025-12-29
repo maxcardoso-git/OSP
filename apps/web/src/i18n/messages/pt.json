@@ -1,0 +1,113 @@
+{
+  "common": {
+    "loading": "Carregando...",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "create": "Criar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "actions": "Acoes",
+    "confirm": "Confirmar",
+    "back": "Voltar",
+    "next": "Proximo",
+    "submit": "Enviar",
+    "reset": "Redefinir",
+    "close": "Fechar",
+    "yes": "Sim",
+    "no": "Nao",
+    "name": "Nome",
+    "description": "Descricao",
+    "status": "Status",
+    "active": "Ativo",
+    "inactive": "Inativo",
+    "createdAt": "Criado em",
+    "updatedAt": "Atualizado em",
+    "noResults": "Nenhum resultado encontrado",
+    "selectOption": "Selecione uma opcao"
+  },
+  "organizations": {
+    "title": "Organizacoes",
+    "subtitle": "Gerencie suas organizacoes",
+    "createNew": "Criar Organizacao",
+    "editOrganization": "Editar Organizacao",
+    "deleteOrganization": "Excluir Organizacao",
+    "deleteConfirm": "Tem certeza de que deseja excluir esta organizacao?",
+    "fields": {
+      "name": "Nome da Organizacao",
+      "slug": "Slug",
+      "description": "Descricao",
+      "logo": "Logo"
+    },
+    "messages": {
+      "created": "Organizacao criada com sucesso",
+      "updated": "Organizacao atualizada com sucesso",
+      "deleted": "Organizacao excluida com sucesso"
+    }
+  },
+  "orgUnits": {
+    "title": "Unidades Organizacionais",
+    "subtitle": "Gerencie as unidades organizacionais",
+    "createNew": "Criar Unidade",
+    "editOrgUnit": "Editar Unidade",
+    "deleteOrgUnit": "Excluir Unidade",
+    "deleteConfirm": "Tem certeza de que deseja excluir esta unidade organizacional?",
+    "fields": {
+      "name": "Nome da Unidade",
+      "code": "Codigo",
+      "type": "Tipo",
+      "parent": "Unidade Pai",
+      "manager": "Gerente"
+    },
+    "messages": {
+      "created": "Unidade organizacional criada com sucesso",
+      "updated": "Unidade organizacional atualizada com sucesso",
+      "deleted": "Unidade organizacional excluida com sucesso"
+    }
+  },
+  "orgUnitTypes": {
+    "title": "Tipos de Unidades",
+    "subtitle": "Configure os tipos de unidades organizacionais",
+    "createNew": "Criar Tipo",
+    "editType": "Editar Tipo",
+    "deleteType": "Excluir Tipo",
+    "deleteConfirm": "Tem certeza de que deseja excluir este tipo?",
+    "fields": {
+      "name": "Nome do Tipo",
+      "code": "Codigo",
+      "description": "Descricao",
+      "level": "Nivel",
+      "color": "Cor"
+    },
+    "messages": {
+      "created": "Tipo criado com sucesso",
+      "updated": "Tipo atualizado com sucesso",
+      "deleted": "Tipo excluido com sucesso"
+    }
+  },
+  "tree": {
+    "title": "Arvore Organizacional",
+    "subtitle": "Visualize a estrutura organizacional",
+    "expandAll": "Expandir Tudo",
+    "collapseAll": "Recolher Tudo",
+    "addChild": "Adicionar Unidade Filha",
+    "moveNode": "Mover No",
+    "rootNode": "Raiz",
+    "noChildren": "Sem unidades filhas",
+    "dragHint": "Arraste para reordenar"
+  },
+  "errors": {
+    "generic": "Ocorreu um erro",
+    "notFound": "Recurso nao encontrado",
+    "unauthorized": "Voce nao esta autorizado a realizar esta acao",
+    "forbidden": "Acesso proibido",
+    "validation": "Por favor verifique sua entrada",
+    "network": "Erro de rede. Tente novamente",
+    "server": "Erro do servidor. Tente mais tarde",
+    "required": "Este campo e obrigatorio",
+    "invalidEmail": "Endereco de email invalido",
+    "minLength": "Deve ter pelo menos {min} caracteres",
+    "maxLength": "Deve ter no maximo {max} caracteres"
+  }
+}

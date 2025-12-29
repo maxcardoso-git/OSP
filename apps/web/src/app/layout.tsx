@@ -5,6 +5,8 @@ import { getMessages, getLocale } from "next-intl/server";
 import { Providers } from "@/providers";
 import "./globals.css";
 
+export const dynamic = 'force-dynamic';
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

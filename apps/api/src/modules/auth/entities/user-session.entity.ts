@@ -7,45 +7,43 @@ import {
   Index,
   ManyToOne,
   JoinColumn,
-} from "typeorm";
-import { User } from "./user.entity";
+} from 'typeorm';
+import { User } from './user.entity';
 
-@Entity("user_sessions")
+@Entity('user_sessions')
 export class UserSession {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: "user_id" })
+  @Column({ name: 'user_id' })
   @Index()
   userId: string;
 
-  @ManyToOne(() => User, (user) => user.sessions, { onDelete: "CASCADE" })
-  @JoinColumn({ name: "user_id" })
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @Column({ name: "tah_session_id" })
-  @Index()
-  tahSessionId: string;
+  @Column({ type: 'jsonb', default: [] })
+  permissions: string[];
 
-  @Column({ name: "org_id" })
-  @Index()
-  orgId: string;
-
-  @Column({ name: "ip_address", nullable: true })
+  @Column({ name: 'ip_address', nullable: true })
   ipAddress: string;
 
-  @Column({ name: "user_agent", nullable: true })
+  @Column({ name: 'user_agent', nullable: true })
   userAgent: string;
 
-  @Column({ name: "expires_at", type: "timestamp with time zone" })
+  @Column({ name: 'expires_at', type: 'timestamptz' })
   expiresAt: Date;
 
-  @Column({ name: "is_active", default: true })
+  @Column({ name: 'last_activity_at', type: 'timestamptz', nullable: true })
+  lastActivityAt: Date;
+
+  @Column({ name: 'is_active', default: true })
   isActive: boolean;
 
-  @CreateDateColumn({ name: "created_at", type: "timestamp with time zone" })
+  @CreateDateColumn({ name: 'created_at', type: 'timestamptz' })
   createdAt: Date;
 
-  @UpdateDateColumn({ name: "updated_at", type: "timestamp with time zone" })
+  @UpdateDateColumn({ name: 'updated_at', type: 'timestamptz' })
   updatedAt: Date;
 }

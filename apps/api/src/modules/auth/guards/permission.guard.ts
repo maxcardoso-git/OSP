@@ -1,62 +1,47 @@
 import {
-  Injectable,
   CanActivate,
   ExecutionContext,
+  Injectable,
   ForbiddenException,
-} from "@nestjs/common";
-import { Reflector } from "@nestjs/core";
-import { PERMISSIONS_KEY } from "../decorators/require-permission.decorator";
-import { IS_PUBLIC_KEY } from "../decorators/public.decorator";
+  Logger,
+} from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
+import { PERMISSION_KEY } from '../decorators/require-permission.decorator';
 
 @Injectable()
 export class PermissionGuard implements CanActivate {
+  private readonly logger = new Logger(PermissionGuard.name);
+
   constructor(private reflector: Reflector) {}
 
-  canActivate(context: ExecutionContext): boolean {
-    // Check if route is public
-    const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [
-      context.getHandler(),
-      context.getClass(),
-    ]);
-
-    if (isPublic) {
-      return true;
-    }
-
-    // Get required permissions
-    const requiredPermissions = this.reflector.getAllAndOverride<string[]>(
-      PERMISSIONS_KEY,
+  async canActivate(context: ExecutionContext): Promise<boolean> {
+    const requiredPermissions = this.reflector.getAllAndMerge<string[]>(
+      PERMISSION_KEY,
       [context.getHandler(), context.getClass()],
     );
 
-    // If no permissions required, allow access
-    if (\!requiredPermissions || requiredPermissions.length === 0) {
+    if (!requiredPermissions || requiredPermissions.length === 0) {
       return true;
     }
 
     const request = context.switchToHttp().getRequest();
     const user = request.user;
 
-    if (\!user) {
-      throw new ForbiddenException("User not authenticated");
+    if (!user) {
+      throw new ForbiddenException('User not authenticated');
     }
 
-    const userPermissions: string[] = user.permissions || [];
+    const userPermissions: string[] = request.permissions || [];
 
-    // Check if user has admin permission (grants all access)
-    if (userPermissions.includes("admin")) {
-      return true;
-    }
-
-    // Check if user has any of the required permissions
-    const hasPermission = requiredPermissions.some((permission) =>
+    const hasPermission = requiredPermissions.every((permission) =>
       userPermissions.includes(permission),
     );
 
-    if (\!hasPermission) {
-      throw new ForbiddenException(
-        `Missing required permission(s): ${requiredPermissions.join(", ")}`,
+    if (!hasPermission) {
+      this.logger.warn(
+        `User ${user.id} denied access. Required: ${requiredPermissions.join(', ')}. Has: ${userPermissions.join(', ')}`,
       );
+      throw new ForbiddenException('Insufficient permissions');
     }
 
     return true;

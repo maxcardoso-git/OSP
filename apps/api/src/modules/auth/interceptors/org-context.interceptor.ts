@@ -4,9 +4,9 @@ import {
   ExecutionContext,
   CallHandler,
   Logger,
-} from "@nestjs/common";
-import { Observable } from "rxjs";
-import { DataSource } from "typeorm";
+} from '@nestjs/common';
+import { DataSource } from 'typeorm';
+import { Observable, tap } from 'rxjs';
 
 @Injectable()
 export class OrgContextInterceptor implements NestInterceptor {
@@ -19,22 +19,24 @@ export class OrgContextInterceptor implements NestInterceptor {
     next: CallHandler,
   ): Promise<Observable<any>> {
     const request = context.switchToHttp().getRequest();
-    const orgId = request.orgId || request.user?.orgId;
+    const orgId = request.orgId;
 
     if (orgId) {
       try {
-        // Set the PostgreSQL session variable for Row Level Security
         await this.dataSource.query(
-          `SET app.org_id = $1`,
+          "SELECT set_config('app.org_id', $1, true)",
           [orgId],
         );
-        
         this.logger.debug(`Set org context: ${orgId}`);
-      } catch (error) {
+      } catch (error: any) {
         this.logger.error(`Failed to set org context: ${error.message}`);
       }
     }
 
-    return next.handle();
+    return next.handle().pipe(
+      tap(() => {
+        // Context is automatically cleared at end of transaction
+      }),
+    );
   }
 }
